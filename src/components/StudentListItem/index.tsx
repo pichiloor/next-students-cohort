@@ -1,9 +1,11 @@
-import styles from "./styles.module.css";
+import Link from "next/link";
 
 const StudentItem = (props: any) => {
   const student = props.student;
   return (
-    <a href={`/student/${student.id}`}>{student?.first_name ?? ""}</a>
+    <Link href={`/student/${student.id}`}>
+      <a>{student?.first_name ?? ""} {student?.last_name ?? ""}</a>
+    </Link>
   );
 }
 

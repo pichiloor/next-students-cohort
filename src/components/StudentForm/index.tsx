@@ -1,6 +1,9 @@
 import axios from "axios";
+import Link from "next/link";
 import {useEffect, useState} from "react";
 import Config from "../../config";
+
+import styles from "./styles.module.css";
 
 type StudentFormProp = {
   student?: any,
@@ -74,40 +77,52 @@ const StudentForm = (props: StudentFormProp) => {
 
   const renderForm = () => {
     return (
-      <form>
-        <label htmlFor="fname">First name:</label><br/>
+      <form className="box">
+        <label className="label">First name</label>
         <input
+          className="input"
           type="text"
           id="first_name"
           name="first_name"
+          placeholder="First name"
           value={student?.first_name ?? ""}
           onChange={handleInputsValues}
           disabled={loading}
         />
         <br/><br/>
-        <label htmlFor="lname">Last name:</label><br/>
+        <label className="label">Last name</label>
         <input
+          className="input"
           type="text"
           id="last_name"
           name="last_name"
           value={student?.last_name ?? ""}
           onChange={handleInputsValues}
+          placeholder="Last name"
           disabled={loading}
         />
         <br/><br/>
         <div>
           <input
+            className={`button is-primary ${loading ? 'is-loading' : ''}`}
             type="submit"
             value="Submit"
             disabled={loading}
             onClick={handleSaveStudent}
           />
-          <a href="/">Go to Students List</a>
+          <Link href={"/"}>
+            <a
+              className={`button`}
+              style={{marginLeft: "0.5rem"}}
+            >
+              Go to Students List
+            </a>
+          </Link>
           {
-            !!error && <span>{error}</span>
+            !!error && <span className={styles.errorMessage}>{error}</span>
           }
           {
-            !!message && <span>{message}</span>
+            !!message && <span className={styles.successMessage}>{message}</span>
           }
         </div>
       </form>
@@ -117,11 +132,7 @@ const StudentForm = (props: StudentFormProp) => {
   return (
     <>
       {
-        loading && <h1>Loading...</h1>
-      }
-
-      {
-        !loading && renderForm()
+        renderForm()
       }
     </>
   );
