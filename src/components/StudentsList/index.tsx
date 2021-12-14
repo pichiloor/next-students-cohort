@@ -54,7 +54,7 @@ const StudentsList = () => {
       </div>
       <div className="block"/>
       <div>
-        <a className="button is-large is-link" href={"/student/new"}>Add</a>
+        <a className="button is-link" href={"/student/new"}>Add</a>
       </div>
     </>
   );
