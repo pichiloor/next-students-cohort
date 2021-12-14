@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
+import Head from 'next/head'
 import axios from "axios";
 
 import {StudentForm} from "../../../src/components";
 
-import styles from "./styles.module.css";
 import Config from "../../../src/config";
+import Layout from "../../../src/components/Layout";
 
 
 const StudentNew = () => {
@@ -19,21 +20,31 @@ const StudentNew = () => {
       axios
         .get(`${Config.studentsApi}/${studentId}`)
         .then((response) => {
-          setStudent(currentStudent => ({...currentStudent, ...response.data}));
+          setStudent((currentStudent: any) =>
+            ({...(currentStudent as object), ...response.data}));
         })
         .catch((error) => {
-          console.error("There was getting student info");
+          console.error("There was getting student info", error);
         });
     }
   }, [studentId]);
 
   return (
     <>
-      <h1>Updating student info</h1>
-      <StudentForm
-        student={student}
-        isNew={false}
-      />
+      <Head>
+        <title>Update a student</title>
+      </Head>
+      <Layout content={
+        <>
+          <p className="subtitle">
+            Updating student info
+          </p>
+          <StudentForm
+            student={student}
+            isNew={false}
+          />
+        </>
+      }/>
     </>
   );
 }

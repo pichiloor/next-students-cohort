@@ -1,11 +1,21 @@
-import styles from "./styles.module.css";
 import {StudentForm} from "../../../src/components";
+import Layout from "../../../src/components/Layout";
+import Head from "next/head";
 
 const StudentNew = () => {
   return (
     <>
-      <h1>Create a student</h1>
-      <StudentForm isNew={true}/>
+      <Head>
+        <title>Create a student</title>
+      </Head>
+      <Layout content={
+        <>
+          <p className="subtitle">
+            Create a student
+          </p>
+          <StudentForm isNew={true}/>
+        </>
+      }/>
     </>
   );
 }
