@@ -20,7 +20,8 @@ const StudentNew = () => {
       axios
         .get(`${Config.studentsApi}/${studentId}`)
         .then((response) => {
-          setStudent((currentStudent: any) => ({...currentStudent, ...response.data}));
+          setStudent((currentStudent: any) =>
+            ({...(currentStudent as object), ...response.data}));
         })
         .catch((error) => {
           console.error("There was getting student info", error);
