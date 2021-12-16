@@ -34,6 +34,7 @@ const StudentNew = () => {
       <Head>
         <title>Update a student</title>
       </Head>
+
       <Layout content={
         <>
           <p className="subtitle">
