@@ -7,7 +7,7 @@ export default (props: any) => (
         <div className="hero-body">
           <Image src="/awana.jpeg" alt="Awana Logo" width={80} height={80} />
           <p className="title">
-            Cohort Students
+            Cohort Students ALOOR
           </p>
           {props.content}
         </div>
