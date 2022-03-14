@@ -16,7 +16,7 @@ const Home: NextPage = () => {
       <Layout content={
         <>
           <p className="subtitle">
-            Our students are 2...
+            Our students are...
           </p>
           <StudentsList/>
         </>
