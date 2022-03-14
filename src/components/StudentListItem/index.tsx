@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 const StudentItem = (props: any) => {
   const student = props.student;
   return (
-    <a href={`/student/${student.id}`}>{student?.first_name ?? ""}</a>
+    <a href={`/student/${student.id}`}>{student?.first_name ?? ""} HOLA</a>
     <Card sx={{ maxWidth: 345 }}>
       <CardMedia
         component="img"
