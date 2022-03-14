@@ -18,7 +18,7 @@ const Home: NextPage = () => {
         <div>
           <Image src="/awana.jpeg" alt="Awana Logo" width={80} height={80} />
           <div>
-            <h1>Cohort Students ALOOR</h1>
+            <h1>Cohort Students</h1>
           </div>
         </div>
 
