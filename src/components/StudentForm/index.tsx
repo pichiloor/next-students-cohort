@@ -1,6 +1,6 @@
 import axios from "axios";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import Config from "../../config";
 
 import styles from "./styles.module.css";
@@ -23,8 +23,8 @@ const StudentForm = (props: StudentFormProp) => {
   }, [studentId]);
 
   const handleInputsValues = (event: any) => {
-    const {name, value} = event.target;
-    setStudent({...student, [name]: value});
+    const { name, value } = event.target;
+    setStudent({ ...student, [name]: value });
   }
 
   const handleSetMessage = (message: string) => {
@@ -89,7 +89,7 @@ const StudentForm = (props: StudentFormProp) => {
           onChange={handleInputsValues}
           disabled={loading}
         />
-        <br/><br/>
+        <br /><br />
         <label className="label">Last name</label>
         <input
           className="input"
@@ -101,23 +101,66 @@ const StudentForm = (props: StudentFormProp) => {
           placeholder="Last name"
           disabled={loading}
         />
-        <br/><br/>
+        <br /><br />
+        <label className="label">Title</label>
+        <input
+          className="input"
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Titlee"
+          value={student?.title ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <label className="label">Age</label>
+        <input
+          className="input"
+          type="text"
+          id="age"
+          name="agee"
+          placeholder="Age"
+          value={student?.age ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <br /><br />
+        <label className="label">Status</label>
+        <input
+          className="input"
+          type="text"
+          id="status"
+          name="status"
+          placeholder="Status"
+          value={student?.status2 ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <br /><br />
+        <br /><br />
         <div>
           <input
             className={`button is-primary ${loading ? 'is-loading' : ''}`}
             type="submit"
-            value="Submit"
+            value="Update"
             disabled={loading}
             onClick={handleSaveStudent}
           />
           <Link href={"/"}>
             <a
               className={`button`}
-              style={{marginLeft: "0.5rem"}}
+              style={{ marginLeft: "0.5rem", marginRight: "0.5rem" }}
             >
               Go to Students List
             </a>
           </Link>
+          <input
+            className={`button is-danger ${loading ? 'is-loading' : ''}`}
+            type="submit"
+            value="Delete"
+            disabled={loading}
+            onClick={handleSaveStudent}
+          />
           {
             !!error && <span className={styles.errorMessage}>{error}</span>
           }
