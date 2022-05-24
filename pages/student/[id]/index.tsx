@@ -1,9 +1,9 @@
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Head from 'next/head'
 import axios from "axios";
 
-import {StudentForm} from "../../../src/components";
+import { StudentForm } from "../../../src/components";
 
 import Config from "../../../src/config";
 import Layout from "../../../src/components/Layout";
@@ -21,7 +21,7 @@ const StudentNew = () => {
         .get(`${Config.studentsApi}/${studentId}`)
         .then((response) => {
           setStudent((currentStudent: any) =>
-            ({...(currentStudent as object), ...response.data}));
+            ({ ...(currentStudent as object), ...response.data }));
         })
         .catch((error) => {
           console.error("There was getting student info", error);
@@ -45,7 +45,7 @@ const StudentNew = () => {
             isNew={false}
           />
         </>
-      }/>
+      } />
     </>
   );
 }

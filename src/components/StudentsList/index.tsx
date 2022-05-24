@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import StudentListItem from "../StudentListItem";
@@ -37,7 +37,7 @@ const StudentsList = () => {
         }
         {
           !loading &&
-            error &&
+          error &&
           <div className="container">
             <div className="notification">
               {error}
@@ -47,12 +47,12 @@ const StudentsList = () => {
         {
           !loading && students.map((student: any) => {
             return (
-              <StudentListItem key={student.id} student={student}/>
+              <StudentListItem key={student.id} student={student} />
             );
           })
         }
       </div>
-      <div className="block"/>
+      <div className="block" />
       <div>
         <a className="button is-link" href={"/student/new"}>Add</a>
       </div>

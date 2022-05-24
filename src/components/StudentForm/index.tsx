@@ -75,6 +75,46 @@ const StudentForm = (props: StudentFormProp) => {
     }
   }
 
+  const handleSaveStudent2 = (event: any) => {
+    event.preventDefault();
+    setLoading(true);
+
+    if (isNew) {
+      console.log("Deleting a student...", student);
+      axios
+        .post(Config.studentsApi, student)
+        .then((response) => {
+          handleSetMessage("User deleted!");
+          setStudent({
+            id: "",
+            first_name: "",
+            last_name: "",
+          })
+          console.log("Create user response", response.data);
+        })
+        .catch((error) => {
+          console.error("There was an error creating a student.", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    } else {
+      console.log("Deleting a student...", student);
+      axios
+        .put(`${Config.studentsApi}/${student.id}`, student)
+        .then((response) => {
+          handleSetMessage("User deleted!");
+          console.log("Create user response", response.data);
+        })
+        .catch((error) => {
+          console.error("There was an error updating the student", error);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    }
+  }
+
   const renderForm = () => {
     return (
       <form className="box">
@@ -118,7 +158,7 @@ const StudentForm = (props: StudentFormProp) => {
           className="input"
           type="text"
           id="age"
-          name="agee"
+          name="age"
           placeholder="Age"
           value={student?.age ?? ""}
           onChange={handleInputsValues}
@@ -126,13 +166,72 @@ const StudentForm = (props: StudentFormProp) => {
         />
         <br /><br />
         <label className="label">Status</label>
+        <select
+          className="input"
+          value={student?.status2 ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        >
+          <option value="active">Activo</option>
+          <option value="inactive">Inactivo</option>
+        </select>
+        <br /><br />
+        <label className="label">Work Experience</label>
         <input
           className="input"
           type="text"
-          id="status"
-          name="status"
-          placeholder="Status"
-          value={student?.status2 ?? ""}
+          id="workexperience"
+          name="workexperience"
+          placeholder="Work Experience"
+          value={student?.workexperience ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <br /><br />
+        <label className="label">Years of Experience</label>
+        <input
+          className="input"
+          type="text"
+          id="yearsexperience"
+          name="yearsexperience"
+          placeholder="Years of Experience"
+          value={student?.yearsexperience ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <br /><br />
+        <label className="label">Tech Skills</label>
+        <input
+          className="input"
+          type="text"
+          id="techskills"
+          name="techskills"
+          placeholder="Tech Skills"
+          value={student?.techskills ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <br /><br />
+        <label className="label">Description</label>
+        <input
+          className="input"
+          type="text"
+          id="description"
+          name="desciption"
+          placeholder="Description"
+          value={student?.desciption ?? ""}
+          onChange={handleInputsValues}
+          disabled={loading}
+        />
+        <br /><br />
+        <label className="label">Observations</label>
+        <input
+          className="input"
+          type="text"
+          id="observations"
+          name="observations"
+          placeholder="Observations"
+          value={student?.observations ?? ""}
           onChange={handleInputsValues}
           disabled={loading}
         />
@@ -142,7 +241,7 @@ const StudentForm = (props: StudentFormProp) => {
           <input
             className={`button is-primary ${loading ? 'is-loading' : ''}`}
             type="submit"
-            value="Update"
+            value="Create"
             disabled={loading}
             onClick={handleSaveStudent}
           />
@@ -157,9 +256,9 @@ const StudentForm = (props: StudentFormProp) => {
           <input
             className={`button is-danger ${loading ? 'is-loading' : ''}`}
             type="submit"
-            value="Delete"
+            value="Cancel"
             disabled={loading}
-            onClick={handleSaveStudent}
+            onClick={handleSaveStudent2}
           />
           {
             !!error && <span className={styles.errorMessage}>{error}</span>
